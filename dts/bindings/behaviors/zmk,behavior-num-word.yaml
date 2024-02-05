@@ -1,0 +1,27 @@
+# Copyright (c) 2021 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+description: Num word behavior
+
+compatible: "zmk,behavior-num-word"
+
+include: zero_param.yaml
+
+properties:
+  "#binding-cells":
+    type: int
+    required: true
+    const: 0
+  continue-list:
+    type: array
+    required: true
+  mods:
+    type: int
+  layers:
+    type: int
+  ignore-alphas:
+    type: boolean
+  ignore-numbers:
+    type: boolean
+  ignore-modifiers:
+    type: boolean
