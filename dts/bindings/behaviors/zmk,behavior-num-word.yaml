@@ -5,8 +5,6 @@ description: Num word behavior
 
 compatible: "zmk,behavior-num-word"
 
-include: zero_param.yaml
-
 properties:
   "#binding-cells":
     type: int
