@@ -29,27 +29,53 @@ manifest:
     path: config
 ```
 
-**NOTE: [common use-case](https://zmk.dev/docs/development/new-behavior#defining-common-use-cases-for-the-behavior-dtsi-optional) hasn't be define for this behavior.**
+**NOTE: [common use-case](https://zmk.dev/docs/development/new-behavior#defining-common-use-cases-for-the-behavior-dtsi-optional) is available.**
 
-To use,
+Default behavior (need to assign layer),
+
+```devicetree
+/ {
+    behaviors {
+      num_word: num_word {
+        #binding-cells = <0>;
+        compatible = "zmk,behavior-num-word";
+        continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL>;
+        ignore-numbers;
+    };
+  };
+};
+
+```
+
+To use default behavior (do not forget to use `include`),
+
+```devicetree
+#include <behaviors/num_word.dtsi>
+
+&num_word {
+  layers = <1 2 3>;
+}
+```
+
+To create new behavior,
 
 ```devicetree
 #include <dt-bindings/zmk/keys.h>
 
 / {
     behaviors {
-      num_word: num_word {
+      new_num_word: new_num_word {
         #binding-cells = <0>;
         compatible = "zmk,behavior-num-word";
         layers = <1 2 3>;
-        continue-list = <BSPC DEL DOT COMMA PLUS MINUS STAR FSLH EQUAL>;
+        continue-list = <BSPC EQUAL>;
         ignore-numbers;
     };
   };
 };
 ```
 
-Once this define, `&num_word` can be use where evert it require, see below documentation.
+Once this define, `&new_num_word` can be use in keymap.
 
 ## Summary
 
