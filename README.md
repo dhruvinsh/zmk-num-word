@@ -29,9 +29,32 @@ manifest:
     path: config
 ```
 
-**NOTE: [common use-case](https://zmk.dev/docs/development/new-behavior#defining-common-use-cases-for-the-behavior-dtsi-optional) is available.**
+**NOTE: [common use-case](https://zmk.dev/docs/development/new-behavior#defining-common-use-cases-for-the-behavior-dtsi-optional) is define.**
 
-Default behavior (need to assign layer),
+## Summary
+
+The num word behavior behaves similar to a cap word, but will automatically
+deactivate when any key not in a continue list is pressed, or if the num word
+key is pressed again. For smaller keyboards using mod-taps, this can help avoid
+repeated alternating holds when typing numbers.
+
+The modifiers are applied only to to the number (`0` to `9`) keycodes.
+
+### Behavior Binding
+
+- Reference: `&num_word`
+
+Example:
+
+```devicetree
+&num_word
+```
+
+**NOTE: Make sure you have custom behavior called `num_word` create, see above guide.**
+
+### Configuration
+
+Default behavior (need to assign layer) defined as,
 
 ```devicetree
 / {
@@ -76,29 +99,6 @@ To create new behavior,
 ```
 
 Once this define, `&new_num_word` can be use in keymap.
-
-## Summary
-
-The num word behavior behaves similar to a cap word, but will automatically
-deactivate when any key not in a continue list is pressed, or if the num word
-key is pressed again. For smaller keyboards using mod-taps, this can help avoid
-repeated alternating holds when typing numbers.
-
-The modifiers are applied only to to the number (`0` to `9`) keycodes.
-
-### Behavior Binding
-
-- Reference: `&num_word`
-
-Example:
-
-```devicetree
-&num_word
-```
-
-**NOTE: Make sure you have custom behavior called `num_word` create, see above guide.**
-
-### Configuration
 
 #### Continue List
 
