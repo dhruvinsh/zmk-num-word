@@ -68,7 +68,7 @@ static void deactivate_num_word(const struct device *dev) {
 }
 
 static int on_num_word_binding_pressed(struct zmk_behavior_binding *binding,
-                                        struct zmk_behavior_binding_event event) {
+                                       struct zmk_behavior_binding_event event) {
     const struct device *dev = zmk_behavior_get_binding(binding->behavior_dev);
     struct behavior_num_word_data *data = dev->data;
 
@@ -82,7 +82,7 @@ static int on_num_word_binding_pressed(struct zmk_behavior_binding *binding,
 }
 
 static int on_num_word_binding_released(struct zmk_behavior_binding *binding,
-                                         struct zmk_behavior_binding_event event) {
+                                        struct zmk_behavior_binding_event event) {
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
@@ -99,8 +99,8 @@ ZMK_SUBSCRIPTION(behavior_num_word, zmk_keycode_state_changed);
 static const struct device *devs[DT_NUM_INST_STATUS_OKAY(DT_DRV_COMPAT)];
 
 static bool num_word_is_caps_includelist(const struct behavior_num_word_config *config,
-                                          uint16_t usage_page, uint8_t usage_id,
-                                          uint8_t implicit_modifiers) {
+                                         uint16_t usage_page, uint8_t usage_id,
+                                         uint8_t implicit_modifiers) {
     for (int i = 0; i < config->continuations_count; i++) {
         const struct num_word_continue_item *continuation = &config->continuations[i];
         LOG_DBG("Comparing with 0x%02X - 0x%02X (with implicit mods: 0x%02X)", continuation->page,
@@ -129,7 +129,7 @@ static bool num_word_is_numeric(uint8_t usage_id) {
 }
 
 static void num_word_enhance_usage(const struct behavior_num_word_config *config,
-                                    struct zmk_keycode_state_changed *ev) {
+                                   struct zmk_keycode_state_changed *ev) {
     if (ev->usage_page != HID_USAGE_KEY || !num_word_is_alpha(ev->keycode)) {
         return;
     }
@@ -163,7 +163,7 @@ static int num_word_keycode_state_changed_listener(const zmk_event_t *eh) {
             (!num_word_is_numeric(ev->keycode) || !config->ignore_numbers) &&
             (!is_mod(ev->usage_page, ev->keycode) || !config->ignore_modifiers) &&
             !num_word_is_caps_includelist(config, ev->usage_page, ev->keycode,
-                                           ev->implicit_modifiers)) {
+                                          ev->implicit_modifiers)) {
             LOG_DBG("Deactivating num_word for 0x%02X - 0x%02X", ev->usage_page, ev->keycode);
             deactivate_num_word(dev);
         }
@@ -189,8 +189,8 @@ static int behavior_num_word_init(const struct device *dev) {
 #define BREAK_ITEM(i, n) PARSE_BREAK(DT_INST_PROP_BY_IDX(n, continue_list, i))
 
 #define KP_INST(n)                                                                                 \
-    static struct behavior_num_word_data behavior_num_word_data_##n = {.active = false};         \
-    static struct behavior_num_word_config behavior_num_word_config_##n = {                      \
+    static struct behavior_num_word_data behavior_num_word_data_##n = {.active = false};           \
+    static struct behavior_num_word_config behavior_num_word_config_##n = {                        \
         .index = n,                                                                                \
         .mods = DT_INST_PROP_OR(n, mods, 0),                                                       \
         .layers = DT_INST_PROP_OR(n, layers, -1),                                                  \
@@ -200,8 +200,8 @@ static int behavior_num_word_init(const struct device *dev) {
         .continuations = {LISTIFY(DT_INST_PROP_LEN(n, continue_list), BREAK_ITEM, (, ), n)},       \
         .continuations_count = DT_INST_PROP_LEN(n, continue_list),                                 \
     };                                                                                             \
-    BEHAVIOR_DT_INST_DEFINE(n, behavior_num_word_init, NULL, &behavior_num_word_data_##n,        \
-                            &behavior_num_word_config_##n, APPLICATION,                           \
+    BEHAVIOR_DT_INST_DEFINE(n, behavior_num_word_init, NULL, &behavior_num_word_data_##n,          \
+                            &behavior_num_word_config_##n, APPLICATION,                            \
                             CONFIG_KERNEL_INIT_PRIORITY_DEFAULT, &behavior_num_word_driver_api);
 
 DT_INST_FOREACH_STATUS_OKAY(KP_INST)
