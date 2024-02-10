@@ -5,6 +5,8 @@ Implement [urob's](https://github.com/urob) num-word behavior for [ZMK](https://
 This is proof of concept that shows that without maintaining fork new behavior can
 be implemented.
 
+This implementation supports Zephyr 3.5 changes.
+
 ## How to use this module?
 
 Under `config/west.yml` add `remotes` and `projects`, here is an example of
