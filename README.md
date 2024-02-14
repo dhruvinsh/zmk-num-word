@@ -2,10 +2,10 @@
 
 Implement [urob's](https://github.com/urob) num-word behavior for [ZMK](https://github.com/zmkfirmware/zmk).
 
-This is proof of concept that shows that without maintaining fork new behavior can
+This is proof of concept that shows that without maintaining fork, new behavior can
 be implemented.
 
-This implementation supports Zephyr 3.5 changes.
+This implementation supports latest Zephyr 3.5 release with ZMK.
 
 ## How to use this module?
 
@@ -127,3 +127,7 @@ the `continue-list` property in your keymap:
 - [Pete Johanson](https://github.com/petejohanson)
 - [Robert U](https://github.com/urob)
 - ZMK and Zephyr
+
+## Other Project
+
+- [ZMK-TRI-STATE](https://github.com/dhruvinsh/zmk-tri-state)
