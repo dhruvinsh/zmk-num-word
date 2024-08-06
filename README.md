@@ -1,6 +1,11 @@
 # ZMK-NUM-WORD
 
-Implement [urob's](https://github.com/urob) num-word behavior for [ZMK](https://github.com/zmkfirmware/zmk).
+> [!IMPORTANT]
+> This repository is just a proof of concept that implement
+> [urob's](https://github.com/urob) [num-word](https://github.com/zmkfirmware/zmk/pull/1451)
+> behavior for [ZMK](https://github.com/zmkfirmware/zmk) without maintaining fork.
+>
+> Better use-case can be found here, [zmk-auto-layer](https://github.com/urob/zmk-auto-layer)
 
 This is proof of concept that shows that without maintaining fork, new behavior can
 be implemented.
@@ -128,6 +133,7 @@ the `continue-list` property in your keymap:
 - [Robert U](https://github.com/urob)
 - ZMK and Zephyr
 
-## Other Project
+## Other Similar Projects
 
 - [ZMK-TRI-STATE](https://github.com/dhruvinsh/zmk-tri-state)
+- [ZMK-AUTO-LAYER](https://github.com/urob/zmk-auto-layer) by [Robert U](https://github.com/urob)
